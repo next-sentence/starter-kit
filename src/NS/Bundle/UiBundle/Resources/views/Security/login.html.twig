@@ -1,0 +1,5 @@
+{% extends 'NSUiBundle:Layout:centered.html.twig' %}
+
+{% block content %}
+{% include 'NSUiBundle:Security:_login.html.twig'  with {'action': path('ns_user_security_check')} %}
+{% endblock %}

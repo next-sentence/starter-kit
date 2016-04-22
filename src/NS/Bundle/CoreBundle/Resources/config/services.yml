@@ -1,0 +1,35 @@
+services:
+    ns.user.canonicalizer:
+        class: NS\Bundle\CoreBundle\Canonicalizer\Canonicalizer
+
+    ns.translation.locales_provider:
+        class: NS\Bundle\CoreBundle\Provider\AvailableLocalesProvider
+
+    ns.translation.locale_provider.contextual:
+        class: NS\Bundle\CoreBundle\Provider\TranslationLocaleProvider
+
+    ns.context.customer:
+        class: NS\Bundle\CoreBundle\Context\CustomerContext
+        arguments: ["@security.token_storage", "@security.authorization_checker"]
+
+    ns.user.user_reloader:
+        class: NS\Bundle\CoreBundle\Reloader\UserReloader
+        arguments: ["@ns.manager.user"]
+
+    ns.user_provider.email:
+        class: NS\Bundle\CoreBundle\Provider\EmailProvider
+        arguments: ["@ns.repository.user", "@ns.user.canonicalizer"]
+
+    ns.user_provider.name_or_email:
+        class: NS\Bundle\CoreBundle\Provider\UsernameOrEmailProvider
+        lazy: true
+        arguments: ["@ns.repository.user", "@ns.user.canonicalizer"]
+
+    ns.user_provider.name:
+        class: NS\Bundle\CoreBundle\Provider\UsernameProvider
+        arguments: ["@ns.repository.user", "@ns.user.canonicalizer"]
+
+    ns.oauth.user_provider:
+        class: NS\Bundle\CoreBundle\OAuth\UserProvider
+        lazy: true
+        arguments: ["@ns.factory.customer", "@ns.repository.customer", "@ns.factory.user", "@ns.repository.user", "@ns.factory.user_oauth", "@ns.repository.user_oauth", "@ns.manager.user", "@ns.user.canonicalizer"]

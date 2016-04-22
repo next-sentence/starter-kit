@@ -1,0 +1,19 @@
+sylius_resource:
+    resources:
+        ns.customer:
+            classes:
+                controller: NS\Bundle\CoreBundle\Controller\CustomerController
+                model: NS\Bundle\CoreBundle\Entity\Customer
+                form:
+                    default: NS\Bundle\CoreBundle\Form\Type\CustomerType
+                    registration: NS\Bundle\UiBundle\Form\Type\CustomerRegistrationType
+        ns.user:
+            classes:
+                model: NS\Bundle\CoreBundle\Entity\User
+                repository: NS\Bundle\CoreBundle\Doctrine\ORM\UserRepository
+        ns.user_oauth:
+            classes:
+                model: NS\Bundle\CoreBundle\Entity\UserOAuth
+        ns.group:
+            classes:
+                model: NS\Bundle\CoreBundle\Entity\Group

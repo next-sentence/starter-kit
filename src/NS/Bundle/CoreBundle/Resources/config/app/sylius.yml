@@ -1,0 +1,67 @@
+sylius_resource:
+    translation:
+        default_locale: %sylius.locale%
+        locale_provider: ns.translation.locale_provider.contextual
+        available_locales_provider: ns.translation.locales_provider
+
+#sylius_mailer:
+#    templates:
+#        sylius.email.order_confirmation.name: SyliusWebBundle:Email:orderConfirmation.html.twig
+#        sylius.email.order_comment.name: SyliusWebBundle:Email:orderComment.html.twig
+#        sylius.email.shipment_confirmation.name: SyliusWebBundle:Email:shipmentConfirmation.html.twig
+#        sylius.email.user_confirmation.name: SyliusWebBundle:Email:userConfirmation.html.twig
+#        sylius.email.password_reset.name: SyliusWebBundle:Email:passwordReset.html.twig
+#    sender:
+#        name: Example.com
+#        address: no-reply@example.com
+#    emails:
+#        user_confirmation:
+#            subject: sylius.emails.user_confirmation.subject
+#            template: SyliusWebBundle:Email:userConfirmation.html.twig
+#        password_reset:
+#            subject: sylius.emails.user.password_reset.subject
+#            template: SyliusWebBundle:Email:passwordReset.html.twig
+#        reset_password_token:
+#            subject: sylius.emails.user.password_reset.subject
+#            template: SyliusWebBundle:Email:passwordReset.html.twig
+#        reset_password_pin:
+#            subject: sylius.emails.user.password_reset.subject
+#            template: SyliusWebBundle:Email:passwordReset.html.twig
+
+#sylius_rbac:
+#    resources:
+#        role:
+#            classes:
+#                form:
+#                    choice: Sylius\Bundle\RbacBundle\Form\Type\RoleEntityType
+#        permission:
+#            classes:
+#                form:
+#                    choice: Sylius\Bundle\RbacBundle\Form\Type\PermissionEntityType
+#    permissions:
+#        ns.manage.user: Manage users
+#        ns.user.delete: Delete user
+#
+#    permissions_hierarchy:
+#        ns.manage.user: [ns.user.delete]
+#    security_roles:
+#        ROLE_ADMINISTRATION_ACCESS: Can access administration
+#        ROLE_API_ACCESS: Can access REST API
+#        ROLE_ALLOWED_TO_SWITCH: Can impersonate users
+#    roles:
+#        administrator:
+#            name: Administrator
+#            description: Administrator user
+#            permissions: [ns.manage.user]
+#            security_roles: [ROLE_ADMINISTRATION_ACCESS, ROLE_ALLOWED_TO_SWITCH]
+#    roles_hierarchy:
+#        administrator: [user]
+
+sylius_grid:
+    templates:
+        action:
+            create: NSAdminBundle:Grid/Action:create.html.twig
+            update: NSAdminBundle:Grid/Action:update.html.twig
+            delete: NSAdminBundle:Grid/Action:delete.html.twig
+        filter:
+            string: NSAdminBundle:Grid/Filter:string.html.twig

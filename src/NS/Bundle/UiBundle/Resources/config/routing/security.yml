@@ -1,0 +1,17 @@
+ns_user_security_login:
+    path: /login
+    methods: [GET]
+    defaults:
+        _controller: ns.controller.user_security:loginAction
+
+ns_user_security_check:
+    path: /login_check
+    methods: [POST]
+    defaults:
+        _controller: ns.controller.user_security:checkAction
+
+ns_user_security_logout:
+    path: /logout
+    methods: [GET, POST]
+    defaults:
+        _controller: ns.controller.user_security:logoutAction

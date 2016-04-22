@@ -1,0 +1,12 @@
+ns_api:
+    resource: "@NSApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+
+ns_admin:
+    resource: "@NSAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+ns_ui:
+    resource: "@NSUiBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,16 @@
+ns_admin_user:
+    resource: |
+        alias: ns.user
+        section: admin
+        templates: NSAdminBundle:Crud
+        except: ['show', 'delete']
+        redirect: update
+        grid: ns_admin_user
+        vars:
+            all:
+                subheader: ns.ui.manage_users
+                templates:
+                    form: NSAdminBundle:User:_form.html.twig
+            index:
+                icon: flag
+    type: sylius.resource

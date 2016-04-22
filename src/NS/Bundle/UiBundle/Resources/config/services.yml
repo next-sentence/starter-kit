@@ -1,0 +1,18 @@
+services:
+    ns.controller.user_security:
+        class: NS\Bundle\UiBundle\Controller\SecurityController
+        arguments: ["@security.authentication_utils", "@form.factory", "@templating"]
+
+    ns.controller.homepage:
+        class: NS\Bundle\UiBundle\Controller\HomepageController
+        arguments: ["@templating"]
+
+    ns.menu_builder:
+        class: NS\Bundle\UiBundle\Menu\AbstractMenuBuilder
+        abstract: true
+        arguments: ["@knp_menu.factory", "@event_dispatcher"]
+
+    ns.form.type.security_login:
+        class: NS\Bundle\UiBundle\Form\Type\SecurityLoginType
+        tags:
+            - { name: "form.type", alias: "ns_security_login" }

@@ -1,0 +1,20 @@
+ns_account_profile_show:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: ns.controller.customer:showProfileAction
+
+ns_account_profile_update:
+    path: /profile/edit
+    methods: [GET, POST]
+    defaults:
+        _controller: ns.controller.customer:updateProfileAction
+        _sylius:
+            form: ns_customer_profile
+            redirect: sns_account_profile_show
+
+ns_account_change_password:
+    path: /change-password
+    methods: [GET, POST]
+    defaults:
+        _controller: ns.controller.user:changePasswordAction

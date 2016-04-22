@@ -1,0 +1,17 @@
+ns_homepage:
+    path: /
+    defaults: { _controller: ns.controller.homepage:indexAction }
+
+ns_register:
+    resource: @NSUiBundle/Resources/config/routing/registration.yml
+
+ns_login:
+    resource: @NSUiBundle/Resources/config/routing/security.yml
+
+#ns_password_resetting:
+#    resource: @NSUiBundle/Resources/config/routing/password_reset.yml
+#    prefix: /resetting
+
+ns_account:
+    resource: @NSUiBundle/Resources/config/routing/account.yml
+    prefix: /account

@@ -1,0 +1,29 @@
+{% extends 'NSAdminBundle::layout.html.twig' %}
+
+{% import 'NSUiBundle:Macro:headers.html.twig' as headers %}
+
+{% set definition = resources.definition %}
+{% set data = resources.data %}
+
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+
+{% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
+
+{% block content %}
+<div class="ui stackable two column grid">
+    <div class="column">
+        {{ headers.default(header|trans, configuration.vars.icon|default('list'), configuration.vars.subheader|default(null)|trans) }}
+    </div>
+    <div class="middle aligned column">
+        <div class="ui right floated buttons">
+            {% if definition.actionGroups.main is defined and definition.getActions('main')|length > 0 %}
+                {% for action in definition.getActions('main') %}
+                    {{ sylius_grid_render_action(resources, action, null) }}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{{ sylius_grid_render(resources, 'NSAdminBundle:Crud:_grid.html.twig') }}
+{% endblock %}

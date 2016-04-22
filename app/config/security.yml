@@ -1,0 +1,83 @@
+security:
+    providers:
+        ns_user_provider:
+            id: ns.user_provider.name_or_email
+    encoders:
+        NS\Bundle\CoreBundle\Entity\User: sha512
+
+    firewalls:
+        admin:
+            switch_user: true
+            context: user
+            pattern: /admin/.*
+            form_login:
+                provider: ns_user_provider
+                login_path: ns_admin_login
+                check_path: ns_admin_login_check
+                failure_path: ns_admin_login
+                default_target_path: ns_admin_dashboard
+                use_forward: false
+                use_referer: true
+            logout:
+                path: ns_admin_logout
+                target: ns_admin_login
+            anonymous: true
+
+#        api:
+#            pattern:    ^/api
+#            fos_oauth:  true
+#            stateless:  true
+#            anonymous:  true
+
+        main:
+            switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
+            context:     user
+            pattern:     /.*
+            form_login:
+                provider: ns_user_provider
+                login_path: /login
+                check_path: /login_check
+                failure_path: /login
+                default_target_path: /account
+                use_forward:  false
+                use_referer: true
+            remember_me:
+                key: %secret%
+                name: APP_REMEMBER_ME
+                lifetime: 31536000
+                always_remember_me: true
+                remember_me_parameter: _remember_me
+            oauth:
+                resource_owners:
+                    amazon:   "/connect-login/check-amazon"
+                    facebook: "/connect-login/check-facebook"
+                    google:   "/connect-login/check-google"
+                login_path:   /login
+                failure_path: /login
+                oauth_user_provider:
+                    service: ns.oauth.user_provider
+            logout: true
+            anonymous: true
+
+        oauth_token:
+            pattern:  ^/oauth/v2/token
+            security: false
+
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+    access_control:
+        - { path: ^/login.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connect.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "/account.*", role: ROLE_USER }
+
+        - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login-check, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "/admin.*", role: ROLE_ADMINISTRATION_ACCESS }
+
+        - { path: ^/api, role: ROLE_API_ACCESS }
+
+        - { path: "/_partial.*", ip: 127.0.0.1 }

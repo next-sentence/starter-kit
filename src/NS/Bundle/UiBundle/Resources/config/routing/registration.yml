@@ -1,0 +1,11 @@
+ns_user_registration:
+    path: /register
+    methods: [GET, POST]
+    defaults:
+        _controller: ns.controller.customer:createAction
+        _sylius:
+#            form: ns_customer_registration
+            event: register
+            template: NSUiBundle::register.html.twig
+            redirect: referer
+            permission: false

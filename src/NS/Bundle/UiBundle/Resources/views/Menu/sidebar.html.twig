@@ -1,0 +1,31 @@
+{% block root %}
+{{ block('list') }}
+{% endblock %}
+
+{% block list %}
+{% for item in item.children %}
+    {{ block('item') }}
+{% endfor %}
+{% endblock %}
+
+{% block item %}
+{% if item.level is same as(1) %}
+<div class="item">
+    <div class="header">{{ item.label|trans }}</div>
+    <div class="menu">
+        {{ block('list') }}
+    </div>
+</div>
+{% else %}
+<a class="item" href="{{ item.uri }}">
+    {{ block('icon') }}
+    {{ item.label|trans }}
+</a>
+{% endif %}
+{% endblock %}
+
+{% block icon %}
+{% set icon = item.labelAttribute('icon') %}
+{% if icon %}<i class="icon {{ icon }}"></i> {% endif %}
+{% endblock %}
+

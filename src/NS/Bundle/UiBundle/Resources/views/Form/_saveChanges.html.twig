@@ -1,0 +1,7 @@
+<div class="ui basic segment">
+    <div class="ui buttons">
+        <button class="ui labeled icon primary button" type="submit"><i class="save icon"></i> {{ 'ns.ui.save_changes'|trans }}</button>
+        <div class="or" data-text="{{ 'ns.ui.or'|trans }}"></div>
+        {% include '@NSUi/Form/_cancelButton.twig' with {'path': cancel_path|default(null)} %}
+    </div>
+</div>

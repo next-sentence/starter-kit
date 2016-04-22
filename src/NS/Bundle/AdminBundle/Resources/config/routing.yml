@@ -1,0 +1,15 @@
+ns_admin_root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: ns_admin_dashboard
+        permanent: true
+
+ns_admin_dashboard:
+    path: /dashboard
+    defaults:
+        _controller: ns.controller.admin.dashboard:indexAction
+
+ns_admin_security:
+    resource: "@NSAdminBundle/Resources/config/routing/security.yml"
+

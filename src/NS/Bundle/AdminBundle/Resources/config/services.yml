@@ -1,0 +1,14 @@
+services:
+    ns.menu_builder.admin.main:
+        class: NS\Bundle\AdminBundle\Menu\MainMenuBuilder
+        parent: ns.menu_builder
+#        arguments: ["@sylius.authorization_checker"]
+
+    ns.menu.admin.main:
+        class: Knp\Menu\MenuItem
+        scope: request
+        factory_service: "ns.menu_builder.admin.main"
+        factory_method: "createMenu"
+        arguments: ["@request"]
+        tags:
+            - { name: "knp_menu.menu", alias: "ns.admin.main"}

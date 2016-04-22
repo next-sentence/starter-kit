@@ -1,0 +1,14 @@
+ns_admin_login:
+    path: /login
+    defaults:
+        _controller: ns.controller.user_security:loginAction
+        _sylius:
+            template: NSAdminBundle:Security:login.html.twig
+
+ns_admin_login_check:
+    path: /login-check
+    defaults:
+        _controller: ns.controller.user_security:checkAction
+
+ns_admin_logout:
+    path: /logout
